@@ -1,0 +1,22 @@
+html {
+    margin: 20px 20px 20px 20px;
+}
+
+.actions {
+    display: flex;
+}
+
+.actions button {
+    margin: 10px;
+}
+
+.create-book-form-container label,
+input,
+button {
+    margin: 10px;
+}
+
+.book-show-container h2,
+button {
+    margin: 10px;
+}
