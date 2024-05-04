@@ -1,11 +1,9 @@
-import { ChangeEvent, FormEvent, ReactElement, useState } from "react"
+import { ChangeEvent, FormEvent, ReactElement, useContext, useState } from "react"
+import BookContext from "../context/books"
 
-interface BookCreateProps {
-    onSubmit: (value: string) => void
-}
-
-function BookCreate({ onSubmit }: BookCreateProps): ReactElement {
+function BookCreate(): ReactElement {
     const [bookTitle, setBookTitle] = useState<string>('')
+    const { createBook } = useContext(BookContext)
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>): void {
         setBookTitle(event.target.value)
@@ -13,7 +11,7 @@ function BookCreate({ onSubmit }: BookCreateProps): ReactElement {
 
     function handleFormSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault()
-        onSubmit(bookTitle)
+        createBook(bookTitle)
         setBookTitle('')
     }
 

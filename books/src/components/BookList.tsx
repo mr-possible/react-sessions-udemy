@@ -1,16 +1,12 @@
-import { ReactElement } from "react"
+import { ReactElement, useContext } from "react"
 import BookShow from "./BookShow"
-import Book from "../interfaces/Book"
+import BookContext from "../context/books"
 
-interface BookListProps {
-    booklist: Book[],
-    onDelete: (id: number) => void,
-    onUpdate: (id: number, title: string) => void
-}
 
-function BookList({ booklist, onDelete, onUpdate }: BookListProps): ReactElement {
-    const renderedBooks = booklist.map((book) => {
-        return <BookShow key={book.id} book={book} onDelete={onDelete} onUpdate={onUpdate} />
+function BookList(): ReactElement {
+    const { books } = useContext(BookContext)
+    const renderedBooks = books.map((book) => {
+        return <BookShow key={book.id} book={book} />
     })
 
     return <div>{renderedBooks}</div>

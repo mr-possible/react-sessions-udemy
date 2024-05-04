@@ -1,13 +1,15 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useContext, useState } from "react"
 import Book from "../interfaces/Book"
+import BookContext from "../context/books"
 
 interface BookEditProps {
     book: Book,
-    onSubmit: (id: number, title: string) => void
+    onSubmit: () => void
 }
 
 function BookEdit({ book, onSubmit }: BookEditProps) {
     const [title, setTitle] = useState<string>(book.title)
+    const { updateBookTitle } = useContext(BookContext)
 
     function handleChange(event: ChangeEvent<HTMLInputElement>): void {
         setTitle(event.target.value)
@@ -15,7 +17,8 @@ function BookEdit({ book, onSubmit }: BookEditProps) {
 
     function handleFormSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault()
-        onSubmit(book.id, title)
+        onSubmit()
+        updateBookTitle(book.id, title)
     }
 
     return (

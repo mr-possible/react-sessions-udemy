@@ -1,27 +1,26 @@
-import { ReactElement, useState } from "react"
+import { ReactElement, useContext, useState } from "react"
 import Book from "../interfaces/Book"
 import BookEdit from "./BookEdit"
+import BookContext from "../context/books"
 
 interface BookShowProps {
     book: Book,
-    onDelete: (id: number) => void,
-    onUpdate: (id: number, title: string) => void
 }
 
-function BookShow({ book, onDelete, onUpdate }: BookShowProps): ReactElement {
+function BookShow({ book }: BookShowProps): ReactElement {
     const [showEdit, setShowEdit] = useState<boolean>(false)
+    const { deleteBookById } = useContext(BookContext)
 
     function handleEdit() {
         setShowEdit(!showEdit)
     }
 
     function handleDelete() {
-        onDelete(book.id);
+        deleteBookById(book.id);
     }
 
-    function handleSubmit(id: number, newTitle: string) {
+    function handleSubmit() {
         setShowEdit(false)
-        onUpdate(id, newTitle)
     }
 
     {
