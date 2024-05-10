@@ -18,11 +18,11 @@ function Accordion(props: AccordionProps): ReactElement {
 
     const renderedItems: ReactNode = props.items.map((item, index) => {
         const isExpanded: boolean = index === expandedIndex
-        const accordionIcon = <span className="text-xl">{isExpanded ? <FaAngleDown /> : <FaAngleRight />}</span>
+        const accordionIcon: ReactElement = (<span className="text-xl">{isExpanded ? <FaAngleDown /> : <FaAngleRight />}</span>)
 
         return (
             <div key={item.id}>
-                <div className="flex justify-between p-3 bg-red-50" onClick={() => { handleAccordionClick(index) }}>
+                <div className="flex justify-between p-3 bg-red-50 cursor-pointer" onClick={() => { handleAccordionClick(index) }}>
                     {item.label}
                     {accordionIcon}
                 </div>
